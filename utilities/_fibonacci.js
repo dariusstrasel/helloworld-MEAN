@@ -10,6 +10,8 @@ var recursive = function (n) {
     }
 };
 
+console.log("default fib:", recursive(3));
+
 module.exports = {
     fibonacci: recursive
 };
