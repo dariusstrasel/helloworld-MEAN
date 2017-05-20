@@ -1,0 +1,28 @@
+{
+  "name": "helloworld-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dariusstrasel/helloworld-express.git"
+  },
+  "keywords": [
+    "hello-world"
+  ],
+  "author": "Darius Strasel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dariusstrasel/helloworld-express/issues"
+  },
+  "homepage": "https://github.com/dariusstrasel/helloworld-express#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.1"
+  }
+}
