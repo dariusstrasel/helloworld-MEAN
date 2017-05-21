@@ -12,6 +12,12 @@ app.get('/', function (req, res) {
     res.send("Express yourself.");
 });
 
+app.get('/json', function (req, res) {
+    console.log("GET the JSON.");
+    res.status(200);
+    res.json( {'jsonData': true} );
+});
+
 var server = app.listen(app.get('port'), function () {
     var port = server.address().port;
     console.log("Magic happens on port ", port);
