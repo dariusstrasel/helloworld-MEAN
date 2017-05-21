@@ -57,10 +57,31 @@ var getOneData = function (req, res) {
 
 var addOneData = function (req, res) {
     var db = dbConnection.get();
-    console.log("POST the data.");
-    console.log(req.body);
-    res.status(200);
-    res.json(req.body);
+    var collection = db.collection('hotels');
+    var newData;
+
+    if (req.body && req.body.name && req.body.stars) {
+        console.log("POST the data.");
+        newData = req.body;
+        newData.stars = parseInt(req.body.stars, 10);
+        console.log(newData);
+        collection.insertOne(newData, function (err, response) {
+            if (err) {
+                console.log("Error:", err);
+            } else {
+                console.log(response.ops);
+                res.status(201);
+                res.json(response.ops);
+            }
+        })
+    } else {
+        errorMessage = 'Data missing from body.';
+        console.log(errorMessage);
+        res.status(400);
+        res.json( { message: errorMessage } );
+    }
+
+
 };
 
 var getFile = function (req, res) {
