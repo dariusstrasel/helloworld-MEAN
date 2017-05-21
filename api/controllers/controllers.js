@@ -1,6 +1,8 @@
 /**
  * Created by dariusstrasel on 5/21/17.
  */
+var dbConnection = require('../data/dbConnection.js');
+var ObjectId = require('mongodb').ObjectID;
 var jsonData = require('../data/hotel-data.json');
 
 var getAllData = function (req, res) {
@@ -18,21 +20,43 @@ var getAllData = function (req, res) {
         count = parseInt(req.query.count, 10);
     }
 
-    var returnData = jsonData.slice(offset, offset + count);
-
-    res.status(200);
-    res.json(returnData);
+    var db = dbConnection.get();
+    var collection = db.collection('hotels');
+    collection
+        .find()
+        .skip(offset)
+        .limit(count)
+        .toArray(function (err, data) {
+        if (err){
+            console.log("Error:", err);
+        } else {
+            console.log("Found: ", data);
+            res.status(200).json(data);
+        }
+    });
 };
 
 var getOneData = function (req, res) {
+    var db = dbConnection.get();
+    var collection = db.collection('hotels');
+
     var dataId = req.params.dataId;
-    var thisData = jsonData[dataId];
-    console.log("GET the dataId", dataId);
-    res.status(200);
-    res.json(thisData);
+    collection
+        .findOne({
+            _id: ObjectId(dataId)
+        }, function (err, data) {
+            if (err){
+                console.log("Error:", err);
+            } else {
+                console.log("GET the dataId", dataId);
+                res.status(200);
+                res.json( data );
+            }
+        })
 };
 
 var addOneData = function (req, res) {
+    var db = dbConnection.get();
     console.log("POST the data.");
     console.log(req.body);
     res.status(200);
