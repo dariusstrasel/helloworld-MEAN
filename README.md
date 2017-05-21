@@ -5,7 +5,7 @@ Includes:
 - Async vs Sync I/O
 - Async vs Sync Compute
 - Node package build
-- Node npm dependecy setup
+- Node npm dependency setup
 - Node module export/require
 - Express routing
 - Express port listener
@@ -13,3 +13,5 @@ Includes:
 - Express static file share
 - Express router instantiation
 - Controller exports to routers
+- Express Router Query Strings
+- Nodemon config file (nodemon.json)
