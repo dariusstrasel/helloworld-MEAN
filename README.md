@@ -15,3 +15,7 @@ Includes:
 - Controller exports to routers
 - Express Router Query Strings
 - Nodemon config file (nodemon.json)
+- MongoDB Connection Client
+- MongoDB Connection to Controller
+- MongoDB backup, import, restore db shell (see: package.json database scripts.)
+- MongoDB; accessing via NodeJS
