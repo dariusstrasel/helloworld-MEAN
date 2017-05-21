@@ -11,3 +11,5 @@ Includes:
 - Express port listener
 - Express server instantiation
 - Express static file share
+- Express router instantiation
+- Controller exports to routers
