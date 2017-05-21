@@ -3,26 +3,14 @@
  */
 var express = require('express');
 var path = require('path');
+var controllers = require('../controllers/controllers.js');
 var router = express.Router();
 
 
 router.route('/json')
-    .get(function (req, res) {
-        console.log("GET the json.");
-        res.status(200);
-        res.json({'jsonData':true});
-    })
-    .post(function (req, res) {
-        console.log("POST the json route.");
-        res.status(200);
-        res.json({'jsonData': 'POST received.'})
-    });
+    .get(controllers.getAllData);
 
 router.route('/file')
-    .get(function (req, res) {
-        console.log("GET the file.");
-        res.status(200);
-        res.sendFile( path.join(__dirname, 'index.js') );
-    });
+    .get(controllers.getFile);
 
 module.exports = router;
