@@ -1,5 +1,5 @@
 # helloworld-express
-Contains script examples with commit commits explaining the reasoning behind its existence.
+Contains script examples with commit comments explaining the reasoning behind its existence.
 
 Includes:
 - Async vs Sync I/O
@@ -7,3 +7,7 @@ Includes:
 - Node package build
 - Node npm dependecy setup
 - Node module export/require
+- Express routing
+- Express port listener
+- Express server instantiation
+- Express static file share
