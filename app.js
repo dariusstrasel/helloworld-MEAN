@@ -4,6 +4,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var routes = require('./routes');
 
 app.set('port', 3000);
 
@@ -13,23 +14,12 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', routes);
 
 app.get('/', function (req, res) {
     console.log("GET the homepage.");
-    res.status(404);
+    res.status(200);
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('/json', function (req, res) {
-    console.log("GET the JSON.");
-    res.status(200);
-    res.json( {'jsonData': true} );
-});
-
-app.get('/file', function (req, res) {
-    console.log("GET the file.");
-    res.status(200);
-    res.sendFile( path.join(__dirname, 'app.js') );
 });
 
 var server = app.listen(app.get('port'), function () {
