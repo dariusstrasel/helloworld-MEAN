@@ -10,6 +10,15 @@ var router = express.Router();
 router.route('/json')
     .get(controllers.getAllData);
 
+// Parameterized route url
+router.route('/json/:dataId')
+    .get(controllers.getOneData);
+
+router.route('/json/new')
+    .post(controllers.addOneData);
+
+
+// Misc route
 router.route('/file')
     .get(controllers.getFile);
 
