@@ -6,7 +6,11 @@
   "scripts": {
     "start": "echo \"Requires nodemon installed in global scope\" && node app.js",
     "watch": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backup-database": "mongodump --db meanDatabase --gzip",
+    "restore-database": "mongorestore --db meanDatabase dump/meanDatabase",
+    "export-database": "mongoexport --db meanDatabase --collection --hotels --out export/hotels.json --jsonArray --pretty",
+    "setup-database": "mongoimport --db meanDatabase --collection hotels --jsonArray api/data/hotel-data.json"
   },
   "repository": {
     "type": "git",
