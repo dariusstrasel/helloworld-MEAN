@@ -4,19 +4,31 @@
 var express = require('express');
 var path = require('path');
 var controllers = require('../controllers/controllers.js');
+var ctrlReviews = require('../controllers/reviews.controllers');
 var router = express.Router();
 
 
-router.route('/json')
+// Hotel routes
+router.route('/hotels')
     .get(controllers.getAllData);
 
 // Parameterized route url
-router.route('/json/:dataId')
+router.route('/hotels/:hotelId')
     .get(controllers.getOneData);
 
-router.route('/json/new')
+router.route('/hotels/new')
     .post(controllers.addOneData);
 
+
+// Review routes
+
+router
+    .route('/hotels/:hotelId/reviews')
+    .get(ctrlReviews.reviewsGetAll);
+
+router
+    .route('/hotels/:hotelId/reviews/:reviewId')
+    .get(ctrlReviews.reviewsGetOne);
 
 // Misc route
 router.route('/file')
