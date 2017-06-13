@@ -21,3 +21,8 @@ Includes:
 - MongoDB; accessing via NodeJS
 - MongoDB; getting/posting data to collections.
 - Mongoose: MongoDB persistent database connection
+- Mongoose: data schemas
+- Mongoose: nested data schemas
+- Mongoose: queried routing
+- Mongoose: filtered query routing
+- Mongoose: geo-coordinate data models
