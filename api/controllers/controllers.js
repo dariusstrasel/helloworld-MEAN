@@ -1,16 +1,51 @@
 /**
  * Created by dariusstrasel on 5/21/17.
  */
-var dbConnection = require('../data/dbConnection.js');
-var ObjectId = require('mongodb').ObjectID;
-var jsonData = require('../data/hotel-data.json');
+// var dbConnection = require('../data/dbConnection.js');
+// var ObjectId = require('mongodb').ObjectID;
+// var jsonData = require('../data/hotel-data.json');
+
+var mongoose = require('mongoose');
+var Hotel = mongoose.model('Hotel');
+
+var runGeoQuery = function (req, res) {
+
+    var lng = parseFloat(req.query.lng);
+    var lat = parseFloat(req.query.lat);
+
+    // a geoJSON point
+    var point = {
+        type: "Point",
+        coordinates: [lng, lat]
+    };
+
+    var geoOptions = {
+        spherical: true,
+        maxDistanceL: 2000,
+        num: 5
+    };
+
+    Hotel
+        .geoNear(point, geoOptions, function (err, results, stats) {
+            console.log('Geo results', results);
+            console.log('Geo stats', stats);
+            res
+                .status(200)
+                .json(results);
+        });
+};
+
 
 var getAllData = function (req, res) {
     console.log("GET the json.");
     console.log(req.query);
-
     var offset = 0;
     var count = 5;
+
+    if (req.query && req.query.lat && req.query.lng) {
+        runGeoQuery(req, res);
+        return;
+    }
 
     if (req.query && req.query.offset) {
         offset = parseInt(req.query.offset, 10);
@@ -20,39 +55,27 @@ var getAllData = function (req, res) {
         count = parseInt(req.query.count, 10);
     }
 
-    var db = dbConnection.get();
-    var collection = db.collection('hotels');
-    collection
+    Hotel
         .find()
         .skip(offset)
         .limit(count)
-        .toArray(function (err, data) {
-        if (err){
-            console.log("Error:", err);
-        } else {
-            console.log("Found: ", data);
-            res.status(200).json(data);
-        }
-    });
+        .exec(function(err, hotels) {
+            console.log("Found hotels", hotels.length);
+            res
+                .json(hotels);
+        });
 };
 
 var getOneData = function (req, res) {
-    var db = dbConnection.get();
-    var collection = db.collection('hotels');
 
-    var dataId = req.params.dataId;
-    collection
-        .findOne({
-            _id: ObjectId(dataId)
-        }, function (err, data) {
-            if (err){
-                console.log("Error:", err);
-            } else {
-                console.log("GET the dataId", dataId);
-                res.status(200);
-                res.json( data );
-            }
-        })
+    var hotelId = req.params.hotelId;
+    console.log("GET hotelID", hotelId);
+    Hotel
+        .findById(hotelId)
+        .exec(function (err, doc) {
+            res.status(200)
+                .json(doc);
+        });
 };
 
 var addOneData = function (req, res) {
