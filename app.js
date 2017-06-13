@@ -2,7 +2,7 @@
  * Created by dariusstrasel on 5/2/17.
  */
 var express = require('express');
-require('./api/data/dbConnection.js').open();
+require('./api/data/db.js');
 var app = express();
 var path = require('path');
 var routes = require('./api/routes');
