@@ -10,7 +10,8 @@ var router = express.Router();
 
 // Hotel routes
 router.route('/hotels')
-    .get(controllers.getAllData);
+    .get(controllers.getAllData)
+    .post(controllers.addOneData);
 
 // Parameterized route url
 router.route('/hotels/:hotelId')
@@ -24,7 +25,8 @@ router.route('/hotels/new')
 
 router
     .route('/hotels/:hotelId/reviews')
-    .get(ctrlReviews.reviewsGetAll);
+    .get(ctrlReviews.reviewsGetAll)
+    .post(ctrlReviews.reviewsAddOne);
 
 router
     .route('/hotels/:hotelId/reviews/:reviewId')
