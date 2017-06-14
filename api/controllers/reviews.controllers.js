@@ -115,7 +115,6 @@ var _addReview = function (req, res, hotel) {
 
 var reviewsAddOne = function(req, res) {
     var hotelId = req.params.hotelId;
-
     console.log("GET hotelID", hotelId);
     Hotel
         .findById(hotelId)
@@ -126,20 +125,17 @@ var reviewsAddOne = function(req, res) {
                 'status': 200,
                 'message': doc
             };
-
             if (!doc) {
             response.status = 404;
             response.message = {
                 "message": "Could not find hotel ID " + hotelId
                 }
             } else {
-
                 if (err) {
                     response.status = 500;
                     response.message =
                         {"message": "Could not find hotel for review lookup."};
                 }
-
                 if (!doc.reviews) {
                     response.status = 200;
                     response.message = {
@@ -147,7 +143,6 @@ var reviewsAddOne = function(req, res) {
                     };
                 }
             }
-
             if (doc) {
                 _addReview(req, res, doc);
             } else {
@@ -155,13 +150,152 @@ var reviewsAddOne = function(req, res) {
                     .status(response.status)
                     .json(response.message);
             }
-
         });
+};
+
+var reviewsUpdateOne = function (req, res) {
+    var hotelId = req.params.hotelId;
+    var reviewId = req.params.reviewId;
+    console.log("PUT reviewId " + reviewId + " for hotelId " + hotelId);
+
+    Hotel
+    .findById(hotelId)
+    .select('reviews')
+    .exec(function (err, hotel) {
+        console.log("Returned hotel", hotel);
+
+        var thisReview;
+
+        var response = {
+            'status': 200,
+            'message': {}
+        };
+
+        if (!hotel) {
+            response.status = 404;
+            response.message = {
+                "message": "Could not find hotel ID " + hotelId
+            }
+        }
+        else {
+
+            var review = hotel.reviews.id(reviewId);
+
+            if (!review) {
+                response.status = 404;
+                response.message = {
+                    'message': 'Could not find review with ID ' + reviewId
+                }
+            } else {
+                // Get the review
+                thisReview = hotel.reviews.id(reviewId);
+
+                // If no review:
+                if (!thisReview) {
+                    response.status = 404;
+                    response.message = {
+                        "message": "Review ID not found " + reviewId
+                    }
+                }
+
+                if (response.status !== 200) {
+                    res
+                        .status(response.status)
+                        .json(response.message)
+                } else {
+                    thisReview.name = req.body.name;
+                    thisReview.rating = req.body.rating;
+                    thisReview.review = parseInt(req.body.rating, 10);
+                    hotel.save(function (err, hotelUpdated) {
+                        if (err) {
+                            res
+                                .status(500)
+                                .json(err);
+                        } else {
+                            res
+                                .status(204)
+                                .json();
+                        }
+                    })
+                }
+            }
+        }
+    });
+};
+
+var reviewsDeleteOne = function (req, res) {
+    var hotelId = req.params.hotelId;
+    var reviewId = req.params.reviewId;
+    console.log("PUT reviewId " + reviewId + " for hotelId " + hotelId);
+
+    Hotel
+    .findById(hotelId)
+    .select('reviews')
+    .exec(function (err, hotel) {
+        console.log("Returned hotel", hotel);
+
+        var thisReview;
+
+        var response = {
+            'status': 200,
+            'message': {}
+        };
+
+        if (!hotel) {
+            response.status = 404;
+            response.message = {
+                "message": "Could not find hotel ID " + hotelId
+            }
+        }
+        else {
+
+            var review = hotel.reviews.id(reviewId);
+
+            if (!review) {
+                response.status = 404;
+                response.message = {
+                    'message': 'Could not find review with ID ' + reviewId
+                }
+            } else {
+                // Get the review
+                thisReview = hotel.reviews.id(reviewId);
+
+                // If no review:
+                if (!thisReview) {
+                    response.status = 404;
+                    response.message = {
+                        "message": "Review ID not found " + reviewId
+                    }
+                }
+
+                if (response.status !== 200) {
+                    res
+                        .status(response.status)
+                        .json(response.message)
+                } else {
+                    hotel.reviews.id(reviewId).remove();
+                    hotel.save(function (err, hotelUpdated) {
+                        if (err) {
+                            res
+                                .status(500)
+                                .json(err);
+                        } else {
+                            res
+                                .status(204)
+                                .json();
+                        }
+                    })
+                }
+            }
+        }
+    });
 
 };
 
 module.exports = {
     reviewsGetAll: reviewsGetAll,
     reviewsGetOne: reviewsGetOne,
-    reviewsAddOne: reviewsAddOne
+    reviewsAddOne: reviewsAddOne,
+    reviewsUpdateOne: reviewsUpdateOne,
+    reviewsDeleteOne: reviewsDeleteOne
 };
