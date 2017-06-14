@@ -26,5 +26,7 @@ Includes:
 - Mongoose: queried routing
 - Mongoose: filtered query routing
 - Mongoose: geo-coordinate data models
+- Mongoose: GET HTTP method
+- Mongoose: POST HTTP method
 - Mongoose: PUT HTTP method
 - Mongoose: DELETE HTTP method
