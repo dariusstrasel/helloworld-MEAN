@@ -15,7 +15,9 @@ router.route('/hotels')
 
 // Parameterized route url
 router.route('/hotels/:hotelId')
-    .get(controllers.getOneData);
+    .get(controllers.getOneData)
+    .put(controllers.updateOne)
+    .delete(controllers.deleteOneData);
 
 router.route('/hotels/new')
     .post(controllers.addOneData);
@@ -30,7 +32,9 @@ router
 
 router
     .route('/hotels/:hotelId/reviews/:reviewId')
-    .get(ctrlReviews.reviewsGetOne);
+    .get(ctrlReviews.reviewsGetOne)
+    .put(ctrlReviews.reviewsUpdateOne)
+    .delete(ctrlReviews.reviewsDeleteOne);
 
 // Misc route
 router.route('/file')
