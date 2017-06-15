@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="meanhotel">
 <head>
     <meta charset="UTF-8">
     <title>Index Page</title>
@@ -8,7 +8,8 @@
     <script src="js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <h1>Welcome to the Index Page! :)</h1>
+
+    <div ng-view></div>
 
     <footer class="footer">
         <div class="container">
@@ -20,5 +21,9 @@
             </p>
         </div>
     </footer>
+    <script src="jquery/jquery-2.1.4.min.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script src="angular-app/app.js"></script>
 </body>
 </html>
