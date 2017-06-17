@@ -5,6 +5,7 @@ var express = require('express');
 var path = require('path');
 var controllers = require('../controllers/controllers.js');
 var ctrlReviews = require('../controllers/reviews.controllers');
+var ctrlUsers = require('../controllers/users.controllers');
 var router = express.Router();
 
 
@@ -39,5 +40,14 @@ router
 // Misc route
 router.route('/file')
     .get(controllers.getFile);
+
+// Authentication routes
+router
+    .route('/users/register')
+    .post(ctrlUsers.register);
+
+router
+    .route('/users/login')
+    .post(ctrlUsers.login);
 
 module.exports = router;
