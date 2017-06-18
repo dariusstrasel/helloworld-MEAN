@@ -26,8 +26,10 @@
   },
   "homepage": "https://github.com/dariusstrasel/helloworld-express#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
     "mongodb": "^2.2.26",
     "mongoose": "^4.10.0"
   },
