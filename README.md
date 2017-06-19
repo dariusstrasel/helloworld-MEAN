@@ -30,3 +30,11 @@ Includes:
 - Mongoose: POST HTTP method
 - Mongoose: PUT HTTP method
 - Mongoose: DELETE HTTP method
+- AngularJS: Custom Directives
+- AngularJS: Services
+- AngularJS: Routing
+- AngularJS: jwt Frontend Authentication
+- AngularJS: Templates
+- AngularJS: User Login/Logout/Registration Controller
+- AngularJS: Custom and Vanilla DataFactories
+- AngularJS: HTTP Interceptors
