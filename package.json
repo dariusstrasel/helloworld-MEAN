@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/dariusstrasel/helloworld-express#readme",
   "dependencies": {
+    "angular-jwt": "^0.1.9",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
