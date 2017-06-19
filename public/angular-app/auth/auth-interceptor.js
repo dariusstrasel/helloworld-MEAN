@@ -3,7 +3,7 @@
  **/
 angular.module('meanhotel').factory('AuthInterceptor', AuthInterceptor);
 
-function AuthInterceptor($window, AuthFactory) {
+function AuthInterceptor($window, $location, $q, AuthFactory) {
     return {
         request: request,
         response: response,
