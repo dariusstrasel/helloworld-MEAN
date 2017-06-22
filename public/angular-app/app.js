@@ -13,17 +13,17 @@ function config($httpProvider, $routeProvider) {
                 restricted: false
             }
         })
-        .when('/hotels', {
-            templateUrl: 'angular-app/hotel-list/hotels.html',
-            controller: HotelsController,
+        .when('/tickerSymbols', {
+            templateUrl: 'angular-app/tickerSymbol-list/tickerSymbols.html',
+            controller: TickerSymbolsController,
             controllerAs: 'vm',
             access: {
                 restricted: false
             }
         })
-        .when('/hotel/:id', {
-            templateUrl: 'angular-app/hotel-display/hotel.html',
-            controller: HotelController,
+        .when('/tickerSymbols/:tickerSymbol', {
+            templateUrl: 'angular-app/tickerSymbol-display/tickerSymbol.html',
+            controller: TickerSymbolController,
             controllerAs: 'vm',
             access: {
                 restricted: false
