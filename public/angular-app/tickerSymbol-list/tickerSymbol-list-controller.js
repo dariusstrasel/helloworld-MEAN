@@ -2,13 +2,13 @@
  * Created by dariusstrasel on 6/15/17.
  */
 
-angular.module('meanNasdaq').controller('HotelsController', HotelsController);
+angular.module('meanNasdaq').controller('TickerSymbolsController', TickerSymbolsController);
 
-function HotelsController(hotelDataFactory) {
+function TickerSymbolsController(tickerSymbolDataFactory) {
     var vm = this;
-    vm.title = "MEAN Hotel App";
-    hotelDataFactory.hotelList().then(function (response) {
+    vm.title = "MEAN NasDaq";
+    tickerSymbolDataFactory.tickerSymbolList().then(function (response) {
         console.log(response);
-        vm.hotels = response;
+        vm.tickerSymbols = response;
     })
 }
