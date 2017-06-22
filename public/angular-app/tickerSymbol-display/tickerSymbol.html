@@ -1,0 +1,16 @@
+<h1>Information on {{ vm.tickerSymbol.Symbol}}</h1>
+
+<p><small>{{vm.tickerSymbol.Name}}</small></p>
+
+<p>Last Sale: {{vm.tickerSymbol.LastSale}}</p>
+<p>Market Cap: {{vm.tickerSymbol.MarketCap}}</p>
+<p>IPO Year: {{vm.tickerSymbol.IPOyear}}</p>
+<p>Sector: {{vm.tickerSymbol.Sector}}</p>
+<p>Industry: {{vm.tickerSymbol.industry}}</p>
+
+
+
+
+<div ng-if="vm.isLoggedIn()">
+    <p>This will include a favorite designator. TODO.</p>
+</div>
