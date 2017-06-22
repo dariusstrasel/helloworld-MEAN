@@ -2,6 +2,7 @@
  * Created by dariusstrasel on 5/21/17.
  */
 var mongoose = require('mongoose');
+require('mongoose-double')(mongoose);
 
 var reviewSchema = new mongoose.Schema({
     name : {
@@ -59,6 +60,33 @@ var dataSchema = new mongoose.Schema({
     }
 });
 
+var tickerSchema = new mongoose.Schema({
+    symbol: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    lastSale: {
+        type: mongoose.SchemaTypes.Double
+    },
+    marketCap:{
+        type: String
+    },
+    ipoYear: {
+        type: Number
+    },
+    sector: {
+        type: String
+    },
+    industry: {
+        type: String
+    }
+
+});
 
 // Model export to database
+mongoose.model('tickerSymbols', tickerSchema, 'tickerSymbols');
 mongoose.model('Hotel', dataSchema, 'hotels');
