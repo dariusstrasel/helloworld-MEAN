@@ -107,6 +107,33 @@ var getAllTickerSymbols = function (req, res) {
         });
 };
 
+var getOneTickerSymbol = function (req, res) {
+
+    var tickerSymbol = req.params.tickerSymbol;
+    console.log("GET tickerSymbol", tickerSymbol);
+    tickerSymbols
+        .findOne({ 'Symbol': tickerSymbol })
+        .exec(function (err, doc) {
+            var response = {
+                status: 200,
+                message: doc
+            };
+            if (err) {
+                console.log("Error finding symbol");
+                response.status = 500;
+                response.message = err;
+            } else if (!doc) {
+                response.status = 404;
+                response.message = {
+                    "message": "Symbol not found"
+                };
+            }
+            res
+                .status(response.status)
+                .json(response.message);
+        });
+};
+
 var getAllData = function (req, res) {
     console.log("GET the json.");
     console.log(req.query);
@@ -320,6 +347,7 @@ var getFile = function (req, res) {
 };
 
 module.exports = {
+    getOneTickerSymbol: getOneTickerSymbol,
     getAllTickerSymbols: getAllTickerSymbols,
     getAllData: getAllData,
     getOneData: getOneData,
