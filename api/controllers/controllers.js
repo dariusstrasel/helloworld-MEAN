@@ -7,6 +7,7 @@
 
 var mongoose = require('mongoose');
 var Hotel = mongoose.model('Hotel');
+var tickerSymbols = mongoose.model('tickerSymbols');
 
 var runGeoQuery = function (req, res) {
 
@@ -46,6 +47,65 @@ var runGeoQuery = function (req, res) {
         });
 };
 
+var getAllTickerSymbols = function (req, res) {
+    console.log("GET the json.");
+    console.log(req.query);
+    var offset = 0;
+    var count = 5;
+    var maxCount = 10;
+
+
+    if (req.query && req.query.offset) {
+        offset = parseInt(req.query.offset, 10);
+    }
+
+    if (req.query && req.query.count) {
+        count = parseInt(req.query.count, 10);
+    }
+
+    if (isNaN(offset) || isNaN(count)) {
+        res
+            .status(400)
+            .json({
+                "message": "If supplied in querystring count and offset should be numbers."
+            });
+        return;
+    }
+
+    if (count > maxCount) {
+        res
+            .status(400)
+            .json({
+                "message": "Count limit of " + maxCount + " exceeded."
+            });
+        return;
+    }
+
+    tickerSymbols
+        .find()
+        .skip(offset)
+        .limit(count)
+        .exec(function(err, symbols) {
+            var response = {
+                status: 200,
+                message: symbols
+            };
+            if (err){
+                console.log("Error finding symbols");
+                response.status = 500;
+                response.message = err;
+            } else if (!symbols) {
+                response.message = {
+                    "message": "No symbols found."
+                };
+            }
+                console.log("Found symbols", symbols.length);
+            res
+                .status(response.status)
+                .json(response.message);
+
+        });
+};
 
 var getAllData = function (req, res) {
     console.log("GET the json.");
@@ -260,6 +320,7 @@ var getFile = function (req, res) {
 };
 
 module.exports = {
+    getAllTickerSymbols: getAllTickerSymbols,
     getAllData: getAllData,
     getOneData: getOneData,
     addOneData: addOneData,
