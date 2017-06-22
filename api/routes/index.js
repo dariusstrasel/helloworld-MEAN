@@ -8,6 +8,10 @@ var ctrlReviews = require('../controllers/reviews.controllers');
 var ctrlUsers = require('../controllers/users.controllers');
 var router = express.Router();
 
+// tickerSymbol routes
+router.route('/tickersymbols')
+    .get(controllers.getAllTickerSymbols);
+
 
 // Hotel routes
 router.route('/hotels')
