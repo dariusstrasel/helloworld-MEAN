@@ -12,6 +12,10 @@ var router = express.Router();
 router.route('/tickersymbols')
     .get(controllers.getAllTickerSymbols);
 
+// Parameterized route url for ticker symbols
+router.route('/tickersymbols/:tickerSymbol')
+    .get(controllers.getOneTickerSymbol);
+
 
 // Hotel routes
 router.route('/hotels')
