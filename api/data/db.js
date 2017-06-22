@@ -2,7 +2,7 @@
  * Created by dariusstrasel on 5/21/17.
  */
 var mongoose = require('mongoose');
-var dbURL = 'mongodb://localhost:27017/meanDatabase';
+var dbURL = 'mongodb://localhost:27017/meanNasdaq';
 
 mongoose.connect(dbURL);
 
