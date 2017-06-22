@@ -1,7 +1,7 @@
 /**
  * Created by dariusstrasel on 6/18/17.
  */
-angular.module('meanhotel').controller('RegisterController', RegisterController);
+angular.module('meanNasdaq').controller('RegisterController', RegisterController);
 
 function RegisterController($http) {
     var vm = this;

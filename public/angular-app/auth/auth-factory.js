@@ -1,7 +1,7 @@
 /**
  * Created by dariusstrasel on 6/18/17.
  */
-angular.module('meanhotel').factory('AuthFactory', AuthFactory);
+angular.module('meanNasdaq').factory('AuthFactory', AuthFactory);
 
 function AuthFactory() {
     return {

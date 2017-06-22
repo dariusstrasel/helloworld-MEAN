@@ -1,7 +1,7 @@
 /**
  * Created by dariusstrasel on 6/15/17.
  */
-angular.module('meanhotel', ['ngRoute', 'angular-jwt']).config(config).run(run);
+angular.module('meanNasdaq', ['ngRoute', 'angular-jwt']).config(config).run(run);
 
 function config($httpProvider, $routeProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');

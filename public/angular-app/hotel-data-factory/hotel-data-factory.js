@@ -1,7 +1,7 @@
 /**
  * Created by dariusstrasel on 6/15/17.
  */
-angular.module('meanhotel').factory('hotelDataFactory', hotelDataFactory);
+angular.module('meanNasdaq').factory('hotelDataFactory', hotelDataFactory);
 
 function hotelDataFactory($http) {
 

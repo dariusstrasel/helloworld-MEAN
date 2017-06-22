@@ -1,7 +1,7 @@
 /**
  * Created by dariusstrasel on 6/18/17.
  */
-angular.module('meanhotel').controller('LoginController', LoginController);
+angular.module('meanNasdaq').controller('LoginController', LoginController);
 
 function LoginController($http, $location, $window, AuthFactory, jwtHelper) {
     var vm = this;

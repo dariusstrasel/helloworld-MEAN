@@ -1,7 +1,7 @@
 /**
  * Created by dariusstrasel on 6/18/17.
  */
-angular.module('meanhotel').directive('mhNavigation', mhNavigation);
+angular.module('meanNasdaq').directive('mhNavigation', mhNavigation);
 
 function mhNavigation() {
     return {

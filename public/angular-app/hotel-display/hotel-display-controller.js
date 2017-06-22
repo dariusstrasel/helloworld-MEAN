@@ -2,7 +2,7 @@
  * Created by dariusstrasel on 6/15/17.
  */
 
-angular.module("meanhotel").controller('HotelController', HotelController);
+angular.module("meanNasdaq").controller('HotelController', HotelController);
 
 function HotelController( $route, $routeParams, $window, hotelDataFactory, AuthFactory, jwtHelper) {
     var vm = this;

@@ -1,7 +1,7 @@
 /**
  * Created by dariusstrasel on 6/18/17.
  **/
-angular.module('meanhotel').factory('AuthInterceptor', AuthInterceptor);
+angular.module('meanNasdaq').factory('AuthInterceptor', AuthInterceptor);
 
 function AuthInterceptor($window, $location, $q, AuthFactory) {
     return {

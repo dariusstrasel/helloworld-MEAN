@@ -20,7 +20,7 @@
 //     }
 // }
 
-angular.module('meanhotel').component('hotelRating', {
+angular.module('meanNasdaq').component('hotelRating', {
     bindings: {
         stars: '='
     },
